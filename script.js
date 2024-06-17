@@ -27,8 +27,8 @@ function CreateToDoItems() {
 
     let li = document.createElement("li");
     const todoItems = `<div title="Hit Double Click and Complete" ondblclick="CompletedToDoItems(this)">${todoValue.value}</div><div>
-                    <img class="edit todo-controls" onclick="UpdateToDoItems(this)" src="images/pencil.png" />
-                    <img class="delete todo-controls" onclick="DeleteToDoItems(this)" src="images/delete.png" /></div></div>`;
+                        <img class="edit todo-controls" onclick="UpdateToDoItems(this)" src="images/pencil.png" />
+                        <img class="delete todo-controls" onclick="DeleteToDoItems(this)" src="images/delete.png" /></div></div>`;
     li.innerHTML = todoItems;
     listItems.appendChild(li);
 
@@ -50,20 +50,10 @@ function ReadToDoItems() {
     if (element.status) {
       style = "style='text-decoration: line-through'";
     }
-    const todoItems = `<div ${style} title="Hit Double Click and Complete" ondblclick="CompletedToDoItems(this)">${
-      element.item
-    }
-    ${
-      style === ""
-        ? ""
-        : '<img class="todo-controls" src="images/tick.png" />'
-    }</div><div>
-    ${
-      style === ""
-        ? '<img class="edit todo-controls" onclick="UpdateToDoItems(this)" src="images/pencil.png" />'
-        : ""
-    }
-    <img class="delete todo-controls" onclick="DeleteToDoItems(this)" src="images/delete.png" /></div></div>`;
+    const todoItems = `<div ${style} title="Hit Double Click and Complete" ondblclick="CompletedToDoItems(this)">${element.item}
+                      ${style === "" ? "" : '<img class="todo-controls" src="images/tick.png" />'}</div><div>
+                      ${style === "" ? '<img class="edit todo-controls" onclick="UpdateToDoItems(this)" src="images/pencil.png" />' : ""}
+                      <img class="delete todo-controls" onclick="DeleteToDoItems(this)" src="images/delete.png" /></div></div>`;
     li.innerHTML = todoItems;
     listItems.appendChild(li);
   });
@@ -71,15 +61,11 @@ function ReadToDoItems() {
 ReadToDoItems();
 
 function UpdateToDoItems(e) {
-  if (
-    e.parentElement.parentElement.querySelector("div").style.textDecoration ===
-    ""
-  ) {
-    todoValue.value =
-      e.parentElement.parentElement.querySelector("div").innerText;
+  if (e.parentElement.parentElement.querySelector("div").style.textDecoration === "") {
+    todoValue.value = e.parentElement.parentElement.querySelector("div").innerText;
     updateText = e.parentElement.parentElement.querySelector("div");
     addUpdate.setAttribute("onclick", "UpdateOnSelectionItems()");
-    addUpdate.setAttribute("src", "/images/refresh.png");
+    addUpdate.setAttribute("src", "images/refresh.png");
     todoValue.focus();
   }
 }
@@ -106,14 +92,13 @@ function UpdateOnSelectionItems() {
 
   updateText.innerText = todoValue.value;
   addUpdate.setAttribute("onclick", "CreateToDoItems()");
-  addUpdate.setAttribute("src", "/images/plus.png");
+  addUpdate.setAttribute("src", "images/plus.png");
   todoValue.value = "";
   setAlertMessage("Todo item Updated Successfully!");
 }
 
 function DeleteToDoItems(e) {
-  let deleteValue =
-    e.parentElement.parentElement.querySelector("div").innerText;
+  let deleteValue = e.parentElement.parentElement.querySelector("div").innerText;
 
   e.parentElement.parentElement.setAttribute("class", "deleted-item");
   todoValue.focus();
@@ -138,9 +123,7 @@ function CompletedToDoItems(e) {
     e.parentElement.querySelector("img.edit").remove();
 
     todo.forEach((element) => {
-      if (
-        e.parentElement.querySelector("div").innerText.trim() == element.item
-      ) {
+      if (e.parentElement.querySelector("div").innerText.trim() == element.item) {
         element.status = true;
       }
     });
