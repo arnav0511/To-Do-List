@@ -27,8 +27,8 @@ function CreateToDoItems() {
 
     let li = document.createElement("li");
     const todoItems = `<div title="Hit Double Click and Complete" ondblclick="CompletedToDoItems(this)">${todoValue.value}</div><div>
-                    <img class="edit todo-controls" onclick="UpdateToDoItems(this)" src="/images/pencil.png" />
-                    <img class="delete todo-controls" onclick="DeleteToDoItems(this)" src="/images/delete.png" /></div></div>`;
+                    <img class="edit todo-controls" onclick="UpdateToDoItems(this)" src="images/pencil.png" />
+                    <img class="delete todo-controls" onclick="DeleteToDoItems(this)" src="images/delete.png" /></div></div>`;
     li.innerHTML = todoItems;
     listItems.appendChild(li);
 
@@ -56,14 +56,14 @@ function ReadToDoItems() {
     ${
       style === ""
         ? ""
-        : '<img class="todo-controls" src="/images/tick.png" />'
+        : '<img class="todo-controls" src="images/tick.png" />'
     }</div><div>
     ${
       style === ""
-        ? '<img class="edit todo-controls" onclick="UpdateToDoItems(this)" src="/images/pencil.png" />'
+        ? '<img class="edit todo-controls" onclick="UpdateToDoItems(this)" src="images/pencil.png" />'
         : ""
     }
-    <img class="delete todo-controls" onclick="DeleteToDoItems(this)" src="/images/delete.png" /></div></div>`;
+    <img class="delete todo-controls" onclick="DeleteToDoItems(this)" src="images/delete.png" /></div></div>`;
     li.innerHTML = todoItems;
     listItems.appendChild(li);
   });
@@ -131,7 +131,7 @@ function DeleteToDoItems(e) {
 function CompletedToDoItems(e) {
   if (e.parentElement.querySelector("div").style.textDecoration === "") {
     const img = document.createElement("img");
-    img.src = "/images/tick.png";
+    img.src = "images/tick.png";
     img.className = "todo-controls";
     e.parentElement.querySelector("div").style.textDecoration = "line-through";
     e.parentElement.querySelector("div").appendChild(img);
